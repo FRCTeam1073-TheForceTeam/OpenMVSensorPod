@@ -120,7 +120,7 @@ union() {
         
         // SD Card Slot
         translate([overall_width - wall_thickness -1,
-                   overall_length - wall_thickness - sd_slot_from_openmv_corner-3, 10]) {
+                   overall_length - wall_thickness - sd_slot_from_openmv_corner-3, 7.5]) {
             cube(size=[10,16,5]);
         }
         
@@ -246,21 +246,24 @@ translate([center_width - openmv_hole_spacing/2.0, wall_thickness + openmv_lengt
             }
             
             // Lens Hole
-            translate([center_width, overall_length - wall_thickness*2 -4.7, 2]) {
-                cylinder(r1=6.2, r2=9, h=5, center=true, $fn=64);
+            translate([center_width, overall_length - wall_thickness*2 -4.7, 1]) {
+                cylinder(r=7, h=3, center=true, $fn=64);
+            }
+            translate([center_width, overall_length - wall_thickness*2 -4.7, 3]) {
+                cylinder(r=9, h=3, center=true, $fn=64);
             }
             translate([center_width, overall_length - wall_thickness*2 -4.7, 4]) {
-                cylinder(r1=9, r2=10, h=2, center=true, $fn=64);
+                cylinder(r=11, h=2, center=true, $fn=64);
             }
     
             // Range Sensor Mounting Holes
             sensor_y = 23;
             translate([center_width+14,sensor_y,-1]) {
-                cylinder(r=1.2, h=11, center=true, $fn=32);
+                cylinder(r=1.6, h=11, center=true, $fn=32);
             }
             
             translate([center_width-14,sensor_y-12.5,-1]) {
-                cylinder(r=1.2, h=11, center=true, $fn=32);
+                cylinder(r=1.6, h=11, center=true, $fn=32);
             }
     
             // Range sensor cable notch
