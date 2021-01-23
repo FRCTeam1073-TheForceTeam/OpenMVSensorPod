@@ -15,6 +15,10 @@ openmv_boss_bore = 1.1;
 openmv_boss_height = 6;
 openmv_hole_spacing = 29.5;
 
+// Mounting Tabs
+mounting_tab_width = 10;
+mounting_tab_height = 7;
+
 // SD Card location:
 sd_slot_from_openmv_corner = 23.5;
 sd_slot_height_from_pins = 8;
@@ -34,7 +38,7 @@ union() {
             cube(size=[openmv_width + 2 * wall_thickness,
                        openmv_length + 2 * wall_thickness + wire_spacing,
                        overall_height]);
-            // Lid bosses
+            // Lid mounting bosses
             cylinder(r=case_boss_radius, h=overall_height, $fn=60);
             translate([0, overall_length, 0]) {
                 cylinder(r=case_boss_radius, h=overall_height, $fn=60);
@@ -44,6 +48,14 @@ union() {
             }
             translate([overall_width, 0, 0]) {
                 cylinder(r=case_boss_radius, h=overall_height, $fn=60);
+            }
+            
+            // Case Mounting Blocks
+            translate([-(mounting_tab_width-1), wall_thickness*2, 0]) {
+                cube(size=[mounting_tab_width,openmv_length + wall_thickness,mounting_tab_height]);
+            }
+            translate([overall_width-1, wall_thickness*2, 0]) {
+                cube(size=[mounting_tab_width,openmv_length+wall_thickness,mounting_tab_height]);
             }
         }
         
@@ -86,9 +98,29 @@ union() {
             }
         }
         
+        // Holes for mounting screws:
+        translate([-mounting_tab_width/2,15,-1]) {
+            cylinder(r=2.5,h=mounting_tab_height+2, $fn=30);
+        }        
+        translate([overall_width + mounting_tab_width/2,15,-1]) {
+            cylinder(r=2.5,h=mounting_tab_height+2, $fn=30);
+        }
+        translate([-mounting_tab_width/2,35,-1]) {
+            cylinder(r=2.5,h=mounting_tab_height+2, $fn=30);
+        }        
+        translate([overall_width + mounting_tab_width/2,35,-1]) {
+            cylinder(r=2.5,h=mounting_tab_height+2, $fn=30);
+        }
+        translate([-mounting_tab_width/2,55,-1]) {
+            cylinder(r=2.5,h=mounting_tab_height+2, $fn=30);
+        }        
+        translate([overall_width + mounting_tab_width/2,55,-1]) {
+            cylinder(r=2.5,h=mounting_tab_height+2, $fn=30);
+        }
+        
         // SD Card Slot
         translate([overall_width - wall_thickness -1,
-                   overall_length - wall_thickness - sd_slot_from_openmv_corner-2, 11]) {
+                   overall_length - wall_thickness - sd_slot_from_openmv_corner-3, 10]) {
             cube(size=[10,16,5]);
         }
         
@@ -105,9 +137,6 @@ union() {
         translate([-1, 40, 18]) {
             cube(size=[overall_width + 2, 2 ,15]);
         }
-        //translate([-1, 50, 18]) {
-        //    cube(size=[overall_width + 2, 2 ,15]);
-        //}
         
         // Cable Slots:
         translate([-1,36,38]) {
@@ -128,7 +157,7 @@ union() {
         
         // USB Connector Hole:
         translate([center_width+ 4, -1,10]) {
-            cube(size=[13, wall_thickness+2, 7]);
+            cube(size=[13, wall_thickness+2, 8]);
         }
     }
     
@@ -141,7 +170,7 @@ union() {
             translate([center_width + openmv_hole_spacing/2.0, wall_thickness + openmv_length + wire_spacing - 3, wall_thickness]) {
                 cylinder(r=openmv_boss_dia,h=6, $fn=48);
             }
-            translate([center_width, overall_length - wall_thickness - openmv_length+6, wall_thickness]) {
+            translate([center_width, overall_length - wall_thickness - openmv_length+8, wall_thickness]) {
                 cylinder(r=openmv_boss_dia + 1,h=6, $fn=48);
                 translate([0,-3,6]) {
                     cube(size=[3,2,3], center = true);
@@ -204,7 +233,16 @@ translate([center_width - openmv_hole_spacing/2.0, wall_thickness + openmv_lengt
             }
             
             translate([center_width - 5, pixie_y - 9, -1]) {
-                cube(size=[10,4,11]);
+                cube(size=[10,4,6]);
+            }
+            
+            // Pixie cable notches
+            translate([center_width+23, pixie_y-2,-1]) {
+                cylinder(r=4, h=11, center=true, $fn=32);
+            }
+            
+            translate([center_width-23, pixie_y-2,-1]) {
+                cylinder(r=4, h=11, center=true, $fn=32);
             }
             
             // Lens Hole
@@ -214,8 +252,6 @@ translate([center_width - openmv_hole_spacing/2.0, wall_thickness + openmv_lengt
             translate([center_width, overall_length - wall_thickness*2 -3.2, 4]) {
                 cylinder(r1=9, r2=10, h=2, center=true, $fn=64);
             }
-
-
     
             // Range Sensor Mounting Holes
             sensor_y = 23;
