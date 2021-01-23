@@ -164,13 +164,13 @@ union() {
     difference() {
         union() {
             // OpenMV Mounting Bosses
-            translate([center_width - openmv_hole_spacing/2.0, wall_thickness + openmv_length + wire_spacing - 3, wall_thickness]) {
+            translate([center_width - openmv_hole_spacing/2.0, wall_thickness + openmv_length + wire_spacing - 3.5, wall_thickness]) {
                 cylinder(r=openmv_boss_dia,h=6, $fn=48);
             }
-            translate([center_width + openmv_hole_spacing/2.0, wall_thickness + openmv_length + wire_spacing - 3, wall_thickness]) {
+            translate([center_width + openmv_hole_spacing/2.0, wall_thickness + openmv_length + wire_spacing - 3.5, wall_thickness]) {
                 cylinder(r=openmv_boss_dia,h=6, $fn=48);
             }
-            translate([center_width, overall_length - wall_thickness - openmv_length+8, wall_thickness]) {
+            translate([center_width, overall_length - wall_thickness - openmv_length+6, wall_thickness]) {
                 cylinder(r=openmv_boss_dia + 1,h=6, $fn=48);
                 translate([0,-3,6]) {
                     cube(size=[3,2,3], center = true);
@@ -179,10 +179,10 @@ union() {
         }
         
         // Holes in bosses
-translate([center_width - openmv_hole_spacing/2.0, wall_thickness + openmv_length + wire_spacing - 3, wall_thickness]) {
+translate([center_width - openmv_hole_spacing/2.0, wall_thickness + openmv_length + wire_spacing - 3.5, wall_thickness]) {
                 cylinder(r=openmv_boss_bore,h=7, $fn=48);
             }
-            translate([center_width + openmv_hole_spacing/2.0, wall_thickness + openmv_length + wire_spacing - 3, wall_thickness]) {
+            translate([center_width + openmv_hole_spacing/2.0, wall_thickness + openmv_length + wire_spacing - 3.5, wall_thickness]) {
                 cylinder(r=openmv_boss_bore,h=7, $fn=48);
             }
         
@@ -246,10 +246,10 @@ translate([center_width - openmv_hole_spacing/2.0, wall_thickness + openmv_lengt
             }
             
             // Lens Hole
-            translate([center_width, overall_length - wall_thickness*2 -3.2, 2]) {
+            translate([center_width, overall_length - wall_thickness*2 -4.7, 2]) {
                 cylinder(r1=6.2, r2=9, h=5, center=true, $fn=64);
             }
-            translate([center_width, overall_length - wall_thickness*2 -3.2, 4]) {
+            translate([center_width, overall_length - wall_thickness*2 -4.7, 4]) {
                 cylinder(r1=9, r2=10, h=2, center=true, $fn=64);
             }
     
